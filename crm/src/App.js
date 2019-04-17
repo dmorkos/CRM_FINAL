@@ -25,11 +25,12 @@ export default class App extends Component {
 
     componentWillMount() {
         firebase.initializeApp({
-          apiKey: "AIzaSyDpMeFiwpZvWCBTkK5CvGiQrq0IWBdOPks",
-          authDomain: "crmlinkedin2.firebaseapp.com",
-          databaseURL: "https://crmlinkedin2.firebaseio.com",
-          storageBucket: "crmlinkedin2.appspot.com",
-          messagingSenderId: "349972667113"
+          apiKey: "AIzaSyCfTpTjdk9clRF3_mBUzZG70Mmsyurr_5A",
+          authDomain: "crmlinkedin-e51fa.firebaseapp.com",
+          databaseURL: "https://crmlinkedin-e51fa.firebaseio.com",
+          projectId: "crmlinkedin-e51fa",
+          storageBucket: "crmlinkedin-e51fa.appspot.com",
+          messagingSenderId: "350260326804"
       });
 
         firebase.auth().onAuthStateChanged((user) => {
