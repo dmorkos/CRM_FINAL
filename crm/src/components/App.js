@@ -10,6 +10,9 @@ import firebase from 'firebase';
 import Login from './Login';
 import Loader from './Loader';
 import PeopleList from './PeopleList';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import reducers from '../reducers/PeopleReducers';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,17 +23,19 @@ const styles = StyleSheet.create({
   },
 });
 
+const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
 export default class App extends Component {
   state = { loggedIn: null};
 
     componentWillMount() {
         firebase.initializeApp({
-          apiKey: "AIzaSyCfTpTjdk9clRF3_mBUzZG70Mmsyurr_5A",
-          authDomain: "crmlinkedin-e51fa.firebaseapp.com",
-          databaseURL: "https://crmlinkedin-e51fa.firebaseio.com",
-          projectId: "crmlinkedin-e51fa",
-          storageBucket: "crmlinkedin-e51fa.appspot.com",
-          messagingSenderId: "350260326804"
+            apiKey: "AIzaSyCfTpTjdk9clRF3_mBUzZG70Mmsyurr_5A",
+            authDomain: "crmlinkedin-e51fa.firebaseapp.com",
+            databaseURL: "https://crmlinkedin-e51fa.firebaseio.com",
+            projectId: "crmlinkedin-e51fa",
+            storageBucket: "crmlinkedin-e51fa.appspot.com",
+            messagingSenderId: "350260326804"
       });
 
         firebase.auth().onAuthStateChanged((user) => {
@@ -54,9 +59,12 @@ export default class App extends Component {
     }
   render() {
     return (
-      <View style={styles.container}>
-        {this.renderInitialView()}
-      </View>
+      <Provider store = {store}>
+        <View style={styles.container}>
+          {this.renderInitialView()}
+        </View>
+      </Provider>
+      
     );
   }
 }
